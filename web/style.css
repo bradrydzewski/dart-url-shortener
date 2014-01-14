@@ -1,6 +1,6 @@
 
 body {
-  background-color: #F8F8F8;
+  background-color: #EEE;
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
   font-weight: normal;
@@ -8,20 +8,44 @@ body {
   margin: 15px;
 }
 
-h1, p {
-  color: #333;
+form {
+  max-width: 550px;
+  margin: 0 auto;
+  border-radius:5px;
+  background:#FFF;
+  padding:20px;
 }
 
-#sample_container_id {
-  width: 100%;
-  height: 400px;
-  position: relative;
-  border: 1px solid #ccc;
-  background-color: #fff;
+h1 {
+  font-size:18px;
+  font-weight:normal;
+  color:#555;
 }
 
-#sample_text_id {
-  font-size: 24pt;
-  text-align: center;
-  margin-top: 140px;
+button {
+  float:right;
+  width:120px;
+  font-size:16px;
+  line-height:22px;
+  padding:7px;
+}
+
+input {
+  width:400px;
+  font-size:16px;
+  height:22px;
+  line-height:22px;
+  padding:8px;
+  color:#666;
+}
+
+#hash {
+  padding:30px;
+  font-size:18px;
+  background:#f7f7f7;
+  margin-top:10px;
+}
+
+.hidden {
+  display:none;
 }
