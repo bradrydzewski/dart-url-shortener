@@ -1,0 +1,7 @@
+name: short_url
+description: a simple url shortener
+dependencies:
+  browser: any
+  start: any
+  redis_client: any
+  crypto: any
