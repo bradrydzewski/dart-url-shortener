@@ -1,8 +1,5 @@
 image: dart
-env:
- - DISPLAY=:99.0
 script:
- - sh -e /etc/init.d/xvfb start
  - pub get
  - pub build
  - dart bin/servertests.dart
