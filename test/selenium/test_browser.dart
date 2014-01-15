@@ -19,10 +19,10 @@ void main() {
   // sauce labs info
   var seleniumServer = io.Platform.environment['SELENIUM_SERVER'];
   seleniumServer = seleniumServer == null ? "http://localhost:4444/wd/hub" : seleniumServer;
-  
+
   setUp(() => WebDriver.createDriver(
       url: seleniumServer,
-      desiredCapabilities: Capabilities.firefox)
+      desiredCapabilities: Capabilities.android)
         .then((_driver) {
           driver = _driver;
           loader = new PageLoader(driver);
