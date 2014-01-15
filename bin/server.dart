@@ -11,8 +11,9 @@ void main() {
   
   // the redis port and server should be driven off
   // the environment variable to enable REDIS TO GO hosting
+  // we'll need to remove the 'redis://' prefix and '/' suffix.
   var redisEnv = Platform.environment['REDISTOGO_URL'];
-  var redis = redisEnv == null ? "localhost:6379" : redisEnv;
+  var redis = redisEnv == null ? "localhost:6379" : redisEnv.substring(8, redisEnv.length-1).replaceFirst("redistogo:", "");
   
   // global redis client
   RedisClient client;
