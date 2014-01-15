@@ -2,7 +2,7 @@ import 'package:webdriver/pageloader.dart';
 import 'package:webdriver/webdriver.dart';
 import 'package:unittest/unittest.dart';
 import 'package:unittest/compact_vm_config.dart';
-import 'dart:io';
+import 'dart:io' as io;
 
 /**
  * These tests are not expected to be run as part of normal automated testing,
@@ -16,7 +16,13 @@ void main() {
   
   Duration TEN_SECONDS=new Duration(seconds:10);
 
-  setUp(() => WebDriver.createDriver(desiredCapabilities: Capabilities.firefox)
+  // sauce labs info
+  var seleniumServer = io.Platform.environment['SELENIUM_SERVER'];
+  seleniumServer = seleniumServer == null ? "http://localhost:4444/wd/hub" : seleniumServer;
+  
+  setUp(() => WebDriver.createDriver(
+      url: seleniumServer,
+      desiredCapabilities: Capabilities.firefox)
         .then((_driver) {
           driver = _driver;
           loader = new PageLoader(driver);
@@ -33,10 +39,10 @@ void main() {
         .then((attr)=>expect(attr, "https://www.dartlang.org/"))
         .then((_) => driver.findElement(new By.id('btn')))
         .then((elem)=>elem.click())
-        .then((_) => sleep(TEN_SECONDS))
+        .then((_) => io.sleep(TEN_SECONDS))
         .then((_) => driver.findElement(new By.id('url_short')))
         .then((elem)=>elem.click())
-        .then((_) => sleep(TEN_SECONDS))
+        .then((_) => io.sleep(TEN_SECONDS))
         .then((_) => driver.currentUrl)
         .then((url) => expect(url, "https://www.dartlang.org/"));
   });
