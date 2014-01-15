@@ -7,9 +7,3 @@ notify:
  email:
    recipients:
      - brad.rydzewski@gmail.com
-
-
-
-#deploy:
-#  heroku:
-#    app: goshorty
