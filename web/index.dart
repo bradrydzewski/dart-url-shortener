@@ -3,10 +3,10 @@ import 'dart:html';
 void main() {
 
   querySelector("#shorten")
-    .onClick.listen(onShorten);
+    .onClick.listen(onClick);
 }
 
-void onShorten(MouseEvent event) {  
+void onClick(MouseEvent event) {  
   // create new xhr
   HttpRequest request = new HttpRequest();
   
@@ -14,11 +14,8 @@ void onShorten(MouseEvent event) {
   request.onReadyStateChange.listen((_) {
     if (request.readyState == HttpRequest.DONE &&
         (request.status == 200 || request.status == 0)) {
-      // data saved OK.
-      querySelector("#hash").text = window.location.protocol + "//" + window.location.host + "/" + request.responseText;
-
-      // un-hide
-      querySelector("#hash").classes.remove("hidden");
+      // write the URI to the page and display
+      showText(request.responseText);
     }
   });
   
@@ -26,6 +23,15 @@ void onShorten(MouseEvent event) {
   InputElement uriInput = querySelector("#url");
   
   // POST the data to the server
-  request.open("POST","/?url=${uriInput.value}", async:false); //"/?url=${urlClean}", async: false);
+  request.open("POST","/?url=${uriInput.value}", async: false);
   request.send();
+}
+
+// constructs and displays the shortened
+// hash as a fully qualified URI.
+void showText(String hash) {
+  var url = "${window.location.protocol}//${window.location.host}/${hash}";
+  querySelector("#hash")
+    ..text = url
+    ..classes.remove("hidden");
 }

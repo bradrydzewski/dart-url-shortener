@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dart URL Shortener</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <form>
+      <h1>Paste your long URL here:</h1>
+      <div>
+        <input type="text" value="" id="url" />
+        <button id="shorten" type="button">Shorten</button>
+      </div>
+      <div id="hash" class="hidden"></div>
+    </form>
+    <script type="text/javascript" src="packages/unittest/test_controller.js"></script>
+    <script type="application/dart" src="test_index.dart"></script>
+    <script src="packages/browser/dart.js"></script>
+  </body>
+</html>
