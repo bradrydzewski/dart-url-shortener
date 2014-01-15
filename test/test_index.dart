@@ -13,10 +13,10 @@ main() {
     });
 
     test("url hash written to page", () {
-      expect(querySelector("#hash").text, "file:///a7388fae");  
+      expect(querySelector("#url_short").text, "file:///a7388fae");  
     });
     test("url text visible on page", () {
-      expect(querySelector("#hash").classes.contains("hidden"), false);  
+      expect(querySelector("#url_short").classes.contains("hidden"), false);  
     });
     
   });

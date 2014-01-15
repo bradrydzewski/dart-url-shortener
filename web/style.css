@@ -39,13 +39,16 @@ input {
   color:#666;
 }
 
-#hash {
+#url_short {
   padding:30px;
   font-size:18px;
   background:#f7f7f7;
   margin-top:10px;
+  display:block;
+  text-decoration:none;
+  color:#333;
 }
 
-.hidden {
+#url_short.hidden {
   display:none;
 }

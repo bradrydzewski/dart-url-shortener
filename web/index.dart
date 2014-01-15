@@ -2,7 +2,7 @@ import 'dart:html';
 
 void main() {
 
-  querySelector("#shorten")
+  querySelector("#btn")
     .onClick.listen(onClick);
 }
 
@@ -20,7 +20,7 @@ void onClick(MouseEvent event) {
   });
   
   // get the url field
-  InputElement uriInput = querySelector("#url");
+  InputElement uriInput = querySelector("#url_long");
   
   // POST the data to the server
   request.open("POST","/?url=${uriInput.value}", async: false);
@@ -31,7 +31,8 @@ void onClick(MouseEvent event) {
 // hash as a fully qualified URI.
 void showText(String hash) {
   var url = "${window.location.protocol}//${window.location.host}/${hash}";
-  querySelector("#hash")
+  var urlShort = querySelector("#url_short")
+    ..attributes["href"] = url
     ..text = url
     ..classes.remove("hidden");
 }
