@@ -17,41 +17,37 @@ void main() {
   // global redis client
   RedisClient client;
 
-  // initialize connection
-  RedisClient.connect(redis)
-    .then((c) => client=c);
-  
+  // initialize connection and then
   // start the web server
-  start(public: 'build', port: port).then((Server app) {
+  RedisClient.connect(redis)
+    .then((c) => client=c)
+    .then((_) => start(public: 'build', port: port))
+    .then((Server app) {
 
-    // handle a shortened URL link
-    app.get('/:hash').listen((request) {
-      // get the hash from the URL path
-      String hash = request.param('hash');
+      // handle a shortened URL link
+      app.get('/:hash').listen((request) {
+        // get the hash from the URL path
+        String hash = request.param('hash');
+
+        // lookup the url for the hash and redirect
+        client.get(hash).then((val) => request.response.redirect(val, 302));
+      });
       
-      // TODO on error respond with 404 or bad request page
-      
-      // lookup the url for the hash and redirect
-      client.get(hash).then((val) => request.response.redirect(val, 302));
-    });
-    
-    // handle request to shorten a new url
-    app.post("/").listen((request) {
-      String url = request.param('url');
-      String hash;
+      // handle request to shorten a new url
+      app.post("/").listen((request) {
+        String url = request.param('url');
 
-      // increment atomic redis counter
-      client.incr("counter")
-        // convert incremented value (integer) to a SHA hash
-        .then((int val) => hash = toHash(val.toString()))
-        // store the hash+url in the redis datastore
-        .then((_) => client.set(hash, url))
-        // return the hash in the response
-        .then((_) => request.response.json(hash));
-
-      // TODO make sure connection is closed
+        // increment atomic redis counter
+        client.incr("counter")
+          // convert incremented value (integer) to a SHA hash
+          // and then store in redis.
+          .then((int val) => toHash(val.toString()))
+          .then((hash) { 
+            client.set(hash, url); 
+            request.response.json(hash);
+          });
+      });
     });
-  });
 }
 
 // Convert a string value into an 8 digit hex string

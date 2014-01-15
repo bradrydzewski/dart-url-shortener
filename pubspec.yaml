@@ -5,3 +5,4 @@ dependencies:
   start: any
   redis_client: any
   crypto: any
+  unittest: any 
