@@ -6,4 +6,13 @@ script:
  - pub get
  - pub build
  - dart bin/servertests.dart
- - content_shell --dump-render-tree web/test_index.html
+notify:
+ email:
+   recipients:
+     - brad.rydzewski@gmail.com
+
+
+
+#deploy:
+#  heroku:
+#    app: goshorty
