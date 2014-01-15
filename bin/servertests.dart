@@ -6,32 +6,21 @@ import 'server.dart' as server;
 void main() {
   useVMConfiguration();
   
-  /**
-   * The named method "thisMethodDNE" does not exist, therefore this test will 
-   * throw an error. 
-   */
-  test('MethodDNEThrowsError', () {
-    expect(thisMethodDNE(), null); 
+  String URL = 'http://www.meetup.com/gdg-silicon-valley/events/159082592/';
+  
+  // Will err. For pitch purposes only. 
+  test('HashURL_1', () {
+    expect(server.toHash_1(URL), isNotNull); 
+  });
+      
+  // Will fail. For pitch purposes only. 
+  test('HashURL_2', () {
+    expect(server.toHash_2(URL), isNotNull);
   });
   
-  /**
-   * Test Hashing the given URL. 
-   */
-  group('HashURL', () {
-    
-    String URL = ''; 
-    
-    setUp(() {
-      URL = 'http://www.meetup.com/gdg-silicon-valley/events/159082592/';
-    });
-    
-    test('HashURLWillFail', () {
-      expect(server.toHash(URL), null);
-    });
-    
-    test('HashURLWillSucced', () {
-      expect(server.toHash(URL), isNotNull);
-      expect(server.toHash(URL), '287b6d95');
-    });
+  // Will succeed. 
+  test('HashURL', () {
+    expect(server.toHash(URL), isNotNull);
+    expect(server.toHash(URL), '287b6d95');
   });
 }

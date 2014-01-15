@@ -2,3 +2,7 @@ packages
 .DS_Store
 build
 *.rdb
+*~
+*.bak
+tmp*
+*.tmp
