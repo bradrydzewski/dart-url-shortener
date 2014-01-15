@@ -1,0 +1,5 @@
+image: dart
+script:
+ - pub get
+ - pub build
+ - dart bin/servertests.dart
