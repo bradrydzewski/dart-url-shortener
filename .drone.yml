@@ -1,4 +1,4 @@
-image: bradrydzewski/demo-dart
+image: dart
 script:
  - dart --version
  - pub get
