@@ -1,5 +1,6 @@
-image: dart
+image: bradrydzewski/demo-dart
 script:
+ - dart --version
  - pub get
  - pub build
  - dart bin/servertests.dart
